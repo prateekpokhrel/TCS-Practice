@@ -22,3 +22,4 @@
     //     return second;
     // }
 // }
+// This have time complexity of O(n) and space complexity of O(1)       
