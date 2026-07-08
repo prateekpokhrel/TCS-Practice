@@ -1,0 +1,139 @@
+body{
+    background-color:greenyellow;
+    margin:10em;
+
+}
+
+#home{
+    background-color: #483355;
+    padding-bottom: 1cm;
+    margin-left:-1cm;
+    margin-top:-1cm;
+    padding-top: 2cm;
+    margin-right: -1cm;
+    padding-bottom: 2cm;
+}
+header{
+    font-size: 2em;
+    color: rgb(240, 234, 245);
+    float:left;
+    padding-left: 2cm;
+
+}
+.topdiv{
+    float:right;
+    padding-right: 1cm;
+}
+.topmenu{
+   color:azure;
+   background-color: #483355;
+   margin:10px;
+   padding:10px;
+   font-size:14px;
+   
+    border-radius: 1mm;
+    box-shadow: 0px 0px 5px -1px rgb(119, 101, 101);
+}
+.topmenu:hover{
+   color: lightgray;
+    background-color:   #483355;
+    margin: 13px;
+    padding: 14px;
+    font-size: 10px;
+    text-decoration:none;
+    border-radius: 1mm;   
+    }
+    #all-conversion-sections{
+        display:grid;
+        justify-content: center;
+
+    }
+    figure{
+        float:left;
+        justify-self:auto;
+        width:200px;
+        height:200px;
+    }
+    img{
+        width:200px;
+        height:200px;
+    }
+    figcaption{
+        text-align:center;
+        font-size: 20px;
+        color:aliceblue;
+    }
+    button{
+        background-color: #483355;
+        color: white;
+        border-radius: 1mm;
+        padding: 10px;
+        margin: 10px;
+    }   
+    button:hover{
+        background-color: #382742;
+        color: lightgray;
+        font-weight: bolder;
+        text-decoration: solid;
+    }
+    .b {
+        
+        background-color:cadetblue;
+        color: lightgray;
+        font-weight: bolder;
+        text-decoration: solid;
+        padding: 40px;
+        margin: 10px;   
+
+    }
+.temperature{
+    background-color:cornflowerblue;
+    color: lightgray;
+    font-weight: bolder;
+    text-decoration: solid;
+    padding: 40px;
+    margin: 10px;   
+}
+.weight{
+    background-color:dimgray;
+    color: lightgray;
+    font-weight: bolder;
+    text-decoration: solid;
+    padding: 40px;
+    margin: 10px;   
+}
+.distance{
+    background-color:darkslategray;
+    color: lightgray;
+    font-weight: bolder;
+    text-decoration: solid;
+    padding: 40px;
+    margin: 10px;
+}
+legend {
+    font-size: 30px;
+    font-weight: bolder;
+}
+.iconbutton{
+    width:40px;
+    height:40px;
+    border-radius: 100%;
+    background-color: rgb(225, 235, 235);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom:40px;
+    left:0;
+    }
+
+.iconbutton img {
+    width:30px
+}
+footer{
+    background-color: #483355;
+    color: azure;
+    padding: 10px;
+    text-align: center;
+}
+

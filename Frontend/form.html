@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample HTML Form</title>
+
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+
+    <h2>User Registration Form</h2>
+
+    <form id="registration-form"
+          action="YOUR_SERVER_ENDPOINT"
+          method="POST"
+          onsubmit="submitForm(event)">
+
+        <label for="unique-id">Field Label:</label>
+        <input
+            type="text"
+            id="unique-id"
+            name="server_variable_name"
+            placeholder="Enter your name"
+            required>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <!-- Success Popup -->
+    <div id="popup">
+
+        <h2>✅ Success</h2>
+
+        <p>Thanks for submitting the form!</p>
+
+        <button onclick="closePopup()">OK</button>
+
+    </div>
+
+    <script src="form.js"></script>
+
+</body>
+</html>
