@@ -5,53 +5,74 @@
 }
 
 body{
-    background-color:darkolivegreen;
+    min-height:100vh;
+    background-color:#98b0bb;
 
+    display:flex;
+    flex-direction:column;      /* Stack vertically */
+    align-items:center;
 }
 header{
-    font-size: 5em;
-   color:black;
-     background-color: rgb(208, 229, 222);
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    font-size: 3em;
+    color: black;
     text-align: center;
+    background-color: rgb(208, 229, 222);
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 #form{
-    font-size: 5em;
-    color:rgb(15, 16, 16);
-    display:flex;
-    border-color: black;
-    justify-content: center;
+   width: 1000px;
+    padding: 20px;
+    margin: 40px auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(195, 229, 238);
+    box-shadow: 0 4px 10px rgba(20, 20, 20, 0.3);
 }
 #firstname{
      font-size: 50px;
     color:black;
-     background-color: rgb(208, 229, 222);
+     
     text-align: center;
+}
+#fname{
+    align-items: baseline;
+    background-color: rgb(157, 179, 199);
+
 }
 #lastname{
       font-size: 50px;
     color:black;
-     background-color: rgb(208, 229, 222);
+     
     text-align: center;
+}
+#lname{
+    align-items: baseline;
+    background-color: rgb(157, 179, 199);
+    size:50px;
 }
 #conatct{
       font-size: 50px;
     color:black;
-     background-color: rgb(208, 229, 222);
+     
     text-align: center;
 }
 #email{
       font-size: 50px;
     color:black;
-     background-color: rgb(208, 229, 222);
+     
     text-align: center;
 }
 #address{
       font-size: 50px;
       text-align: center;
   
-    color:black;
-     background-color: rgb(208, 229, 222);
-}
+    color:black;}
+    
 #submit{
       font-size: 50px;
     color:black;
@@ -59,11 +80,15 @@ header{
     text-align: center;
 }
 footer{
-    font-size:50px;
-    color:black;
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    font-size: 2em;
+    color: black;
     text-align: center;
-    margin-bottom: auto;
     background-color: aquamarine;
-    
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
