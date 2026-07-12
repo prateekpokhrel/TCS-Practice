@@ -15,13 +15,14 @@ public class ReverseArray {
     }
 }
     public static void main(String[] args) {
-        int numbers[] = {2, 3, 4, 5, 10};
+        int numbers[] = {2, 4, 3, 5, 10};
         
         // this function should be done first
-        reverse(numbers);
+       reverse(numbers);
 
         // loop to print result
         for(int i =0 ; i < numbers.length; i++){
+             
         System.out.print(numbers[i]+ " ");
         System.out.println();
         }
