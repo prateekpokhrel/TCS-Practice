@@ -1,3 +1,1 @@
- // // display after all
-
-        // System.out.println("Result after all: "+arr[index]);
+System.out.println("Subarray (" + i + "," + j + ") Sum = " + currSum);
