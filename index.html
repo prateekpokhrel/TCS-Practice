@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pratik Pokhrel | Coming Soon</title>
+    <meta name="description" content="Project currently under active development. Visit the GitHub repository for more details.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#030712',
+                        accent: '#2563EB',
+                        cyan: '#06B6D4',
+                        purple: '#8B5CF6',
+                        surface: 'rgba(255, 255, 255, 0.03)',
+                        surfaceHover: 'rgba(255, 255, 255, 0.08)',
+                        borderGlass: 'rgba(255, 255, 255, 0.1)',
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'blob-reverse': 'blob-reverse 12s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        'blob-reverse': {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(-30px, 50px) scale(1.1)' },
+                            '66%': { transform: 'translate(20px, -20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS for Premium Effects -->
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shine: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            overflow-x: hidden;
+            /* Noise texture overlay */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+
+        /* Mouse Glow Follower */
+        #mouse-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            transition: width 0.3s, height 0.3s;
+            mix-blend-mode: screen;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--glass-shine);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(37, 99, 235, 0.4);
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #2563EB, #8B5CF6, #06B6D4);
+        }
+        
+        .text-gradient-alt {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #e2e8f0, #94a3b8);
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered Reveals */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* 3D Tilt Wrapper */
+        .tilt-wrapper {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .tilt-element {
+            transition: transform 0.1s ease;
+            will-change: transform;
+        }
+
+        /* Premium Buttons */
+        .btn-primary {
+            position: relative;
+            background: #2563EB;
+            color: white;
+            z-index: 1;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to right, #2563EB, #8B5CF6);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Aurora Background */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        .aurora-blob {
+            position: absolute;
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: blob 15s infinite alternate;
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+        @keyframes float-up {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+        }
+
+        /* FAQ Accordion */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Form Validation Animations */
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        .shake { animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both; }
+
+        /* Timeline Animations */
+        .timeline-dot {
+            transition: all 0.5s ease;
+        }
+        .timeline-item.active .timeline-dot {
+            background-color: #2563EB;
+            box-shadow: 0 0 15px #2563EB;
+            border-color: #3b82f6;
+        }
+        .timeline-item.active .timeline-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Toast Notification */
+        .toast {
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Typing cursor */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: #fff;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-white relative">
+
+    <!-- Global Background Effects -->
+    <div id="mouse-glow"></div>
+    
+    <div class="aurora-bg">
+        <div class="aurora-blob bg-accent w-[40vw] h-[40vw] top-[-10%] left-[-10%]"></div>
+        <div class="aurora-blob bg-purple top-[20%] right-[-10%] w-[35vw] h-[35vw] animate-blob-reverse"></div>
+        <div class="aurora-blob bg-cyan bottom-[-20%] left-[20%] w-[50vw] h-[50vw] animation-delay-2000"></div>
+    </div>
+
+    <!-- Particle Container -->
+    <div id="particles" class="fixed inset-0 pointer-events-none z-[-1]"></div>
+
+    <!-- ==================================== -->
+    <!-- SECTION 1 — NAVBAR                   -->
+    <!-- ==================================== -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 border-b border-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="group flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-accent to-purple flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i data-lucide="code-2" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="font-bold text-xl tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent group-hover:to-cyan transition-all">
+                    Pratik Pokhrel
+                </span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-medium text-gray-300 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-accent hover:after:w-full after:transition-all">Home</a>
+                <a href="#progress" class="text-sm font-medium text-gray-300 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-accent hover:after:w-full after:transition-all">Progress</a>
+                <a href="#tech" class="text-sm font-medium text-gray-300 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-accent hover:after:w-full after:transition-all">Tech Stack</a>
+                <a href="#faq" class="text-sm font-medium text-gray-300 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-accent hover:after:w-full after:transition-all">FAQ</a>
+            </div>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-4">
+                <a href="#github" class="hidden sm:flex items-center gap-2 text-sm font-medium btn-secondary px-4 py-2 rounded-full">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span>Repository</span>
+                </a>
+                
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full glass hidden flex-col py-4 px-6 gap-4 border-t border-white/10">
+            <a href="#home" class="text-base font-medium text-gray-300 hover:text-white">Home</a>
+            <a href="#progress" class="text-base font-medium text-gray-300 hover:text-white">Progress</a>
+            <a href="#tech" class="text-base font-medium text-gray-300 hover:text-white">Tech Stack</a>
+            <a href="#faq" class="text-base font-medium text-gray-300 hover:text-white">FAQ</a>
+            <a href="#github" class="flex items-center gap-2 text-base font-medium text-accent">
+                <i data-lucide="github" class="w-5 h-5"></i> View Repository
+            </a>
+        </div>
+    </nav>
+
+    <!-- ==================================== -->
+    <!-- SECTION 2 — HERO                     -->
+    <!-- ==================================== -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto text-center z-10">
+            
+            <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 border border-accent/30 bg-accent/10">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan"></span>
+                </span>
+                <span class="text-sm font-medium text-cyan">Active Development Phase</span>
+            </div>
+
+            <h1 class="reveal delay-100 text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                <span class="block">🚧 Website Under</span>
+                <span class="text-gradient">Construction</span>
+            </h1>
+
+            <div class="reveal delay-200 glass p-6 md:p-8 rounded-2xl max-w-3xl mx-auto mb-10 shadow-2xl">
+                <p class="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
+                    This project is currently under active development. 
+                    <br class="hidden md:block"/>
+                    Until the website goes live, please visit the <span class="font-semibold text-white">GitHub repository</span> to understand the complete <span class="text-accent font-medium">project architecture</span>, features, implementation details, and documentation.
+                </p>
+                <div class="mt-4 text-left font-mono text-sm text-cyan/80 p-3 bg-black/30 rounded-lg inline-block w-full text-center">
+                    <span id="typed-text"></span><span class="cursor"></span>
+                </div>
+            </div>
+
+            <div class="reveal delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#github" class="w-full sm:w-auto btn-primary px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-3">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                    Visit GitHub Repository
+                </a>
+                <a href="#notify" class="w-full sm:w-auto btn-secondary px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-3">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    Notify Me
+                </a>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center gap-2 text-gray-500">
+                <span class="text-xs uppercase tracking-widest font-semibold">Scroll to explore</span>
+                <i data-lucide="mouse" class="w-5 h-5"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== -->
+    <!-- SECTION 3 — PROJECT INFO             -->
+    <!-- ==================================== -->
+    <section id="progress" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Project <span class="text-gradient">Status</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Real-time metrics on the current development cycle and upcoming milestones.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-6 reveal tilt-wrapper">
+                    <div class="tilt-element h-full flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mb-4 text-accent">
+                                <i data-lucide="activity" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-gray-400 text-sm font-medium mb-1">Current Phase</h3>
+                            <p class="text-2xl font-bold text-white">Backend Arch</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-6 reveal delay-100 tilt-wrapper">
+                    <div class="tilt-element h-full flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-full bg-purple/20 flex items-center justify-center mb-4 text-purple">
+                                <i data-lucide="calendar" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-gray-400 text-sm font-medium mb-1">Expected Release</h3>
+                            <p class="text-2xl font-bold text-white">Q4 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-6 reveal delay-200 tilt-wrapper lg:col-span-2">
+                    <div class="tilt-element h-full flex flex-col justify-between">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-gray-400 text-sm font-medium mb-1">Overall Progress</h3>
+                                <p class="text-2xl font-bold text-white">75% Complete</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-cyan/20 flex items-center justify-center text-cyan animate-spin-slow">
+                                <i data-lucide="loader-2" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-3 overflow-hidden shadow-inner">
+                            <div id="progress-bar" class="bg-gradient-to-r from-accent via-purple to-cyan h-full rounded-full w-0 transition-all duration-1000 ease-out relative" data-width="75%">
+                                <div class="absolute top-0 right-0 bottom-0 left-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSI+PC9yZWN0Pgo8L3N2Zz4=')] opacity-50"></div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3 text-right">Integrating microservices...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== -->
+    <!-- SECTION 4 — TECH STACK               -->
+    <!-- ==================================== -->
+    <section id="tech" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-black/40 border-y border-white/5 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Powered by <span class="text-gradient">Modern Tech</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Built with enterprise-grade architecture for maximum scalability and performance.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+                <!-- Generated via JS for consistency, but explicitly written here per requirements -->
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal group hover:bg-white/10">
+                    <i data-lucide="coffee" class="w-10 h-10 text-orange-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">Java</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal delay-100 group hover:bg-white/10">
+                    <i data-lucide="leaf" class="w-10 h-10 text-green-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">Spring Boot</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal delay-200 group hover:bg-white/10">
+                    <i data-lucide="atom" class="w-10 h-10 text-cyan group-hover:scale-110 transition-transform animate-spin-slow"></i>
+                    <span class="font-semibold text-gray-200">React</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal delay-300 group hover:bg-white/10">
+                    <i data-lucide="database" class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">MySQL</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal delay-[400ms] group hover:bg-white/10">
+                    <i data-lucide="container" class="w-10 h-10 text-blue-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">Docker</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal group hover:bg-white/10">
+                    <i data-lucide="file-code" class="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">Python</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal delay-100 group hover:bg-white/10">
+                    <i data-lucide="zap" class="w-10 h-10 text-teal-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">FastAPI</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal delay-200 group hover:bg-white/10">
+                    <i data-lucide="server" class="w-10 h-10 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">PostgreSQL</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal delay-300 group hover:bg-white/10">
+                    <i data-lucide="shield-check" class="w-10 h-10 text-red-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">JWT Auth</span>
+                </div>
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-3 reveal delay-[400ms] group hover:bg-white/10">
+                    <i data-lucide="wind" class="w-10 h-10 text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold text-gray-200">Tailwind CSS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== -->
+    <!-- SECTION 5 — WHY WEBSITE IS NOT LIVE  -->
+    <!-- ==================================== -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Development <span class="text-gradient">Roadmap</span></h2>
+                <p class="text-gray-400 text-lg">Why isn't it live yet? Building scalable software takes time. Here is the timeline.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-purple to-transparent md:-translate-x-1/2 rounded-full opacity-50"></div>
+
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    
+                    <!-- Item 1 (Done) -->
+                    <div class="relative flex items-center md:justify-end timeline-item active reveal">
+                        <div class="absolute left-0 md:left-1/2 w-10 h-10 rounded-full bg-[#030712] border-4 border-accent flex items-center justify-center md:-translate-x-1/2 z-10 timeline-dot">
+                            <i data-lucide="check" class="w-5 h-5 text-accent"></i>
+                        </div>
+                        <div class="w-full md:w-[45%] pl-16 md:pl-0 pr-0 md:pr-16 text-left md:text-right timeline-content transition-all duration-700">
+                            <div class="glass-card p-6">
+                                <span class="text-accent text-sm font-bold tracking-wider uppercase mb-2 block">Phase 1</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Design & Architecture</h3>
+                                <p class="text-gray-400 text-sm">UI/UX design, database schema planning, and selecting the optimal technology stack for scalability.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 (Done) -->
+                    <div class="relative flex items-center md:justify-start timeline-item active reveal">
+                        <div class="absolute left-0 md:left-1/2 w-10 h-10 rounded-full bg-[#030712] border-4 border-accent flex items-center justify-center md:-translate-x-1/2 z-10 timeline-dot">
+                            <i data-lucide="check" class="w-5 h-5 text-accent"></i>
+                        </div>
+                        <div class="w-full md:w-[45%] pl-16 md:pl-16 pr-0 text-left timeline-content transition-all duration-700">
+                            <div class="glass-card p-6">
+                                <span class="text-accent text-sm font-bold tracking-wider uppercase mb-2 block">Phase 2</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Backend Implementation</h3>
+                                <p class="text-gray-400 text-sm">Developing RESTful APIs with Spring Boot & FastAPI, implementing JWT authentication, and Docker containerization.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 (Current) -->
+                    <div class="relative flex items-center md:justify-end timeline-item active reveal">
+                        <div class="absolute left-0 md:left-1/2 w-10 h-10 rounded-full bg-[#030712] border-4 border-purple flex items-center justify-center md:-translate-x-1/2 z-10 shadow-[0_0_15px_rgba(139,92,246,0.6)]">
+                            <i data-lucide="loader" class="w-5 h-5 text-purple animate-spin"></i>
+                        </div>
+                        <div class="w-full md:w-[45%] pl-16 md:pl-0 pr-0 md:pr-16 text-left md:text-right transition-all duration-700">
+                            <div class="glass-card p-6 border-purple/30 bg-purple/5">
+                                <span class="text-purple text-sm font-bold tracking-wider uppercase mb-2 block">Current Phase</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Frontend Integration</h3>
+                                <p class="text-gray-300 text-sm">Building responsive React components, state management, and wiring up the UI to the backend microservices.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 (Pending) -->
+                    <div class="relative flex items-center md:justify-start timeline-item reveal opacity-50">
+                        <div class="absolute left-0 md:left-1/2 w-10 h-10 rounded-full bg-[#030712] border-4 border-gray-600 flex items-center justify-center md:-translate-x-1/2 z-10">
+                            <i data-lucide="bug" class="w-5 h-5 text-gray-500"></i>
+                        </div>
+                        <div class="w-full md:w-[45%] pl-16 md:pl-16 pr-0 text-left">
+                            <div class="glass-card p-6 border-gray-800 bg-gray-900/50">
+                                <span class="text-gray-500 text-sm font-bold tracking-wider uppercase mb-2 block">Phase 4</span>
+                                <h3 class="text-xl font-bold text-gray-400 mb-2">Testing & QA</h3>
+                                <p class="text-gray-500 text-sm">Unit testing, integration testing, vulnerability scanning, and performance optimization.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 (Pending) -->
+                    <div class="relative flex items-center md:justify-end timeline-item reveal opacity-50">
+                        <div class="absolute left-0 md:left-1/2 w-10 h-10 rounded-full bg-[#030712] border-4 border-gray-600 flex items-center justify-center md:-translate-x-1/2 z-10">
+                            <i data-lucide="rocket" class="w-5 h-5 text-gray-500"></i>
+                        </div>
+                        <div class="w-full md:w-[45%] pl-16 md:pl-0 pr-0 md:pr-16 text-left md:text-right">
+                            <div class="glass-card p-6 border-gray-800 bg-gray-900/50">
+                                <span class="text-gray-500 text-sm font-bold tracking-wider uppercase mb-2 block">Final Phase</span>
+                                <h3 class="text-xl font-bold text-gray-400 mb-2">Deployment</h3>
+                                <p class="text-gray-500 text-sm">CI/CD pipeline execution, setting up SSL, database migration, and live production release.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== -->
+    <!-- SECTION 6 — EMAIL NOTIFICATION       -->
+    <!-- ==================================== -->
+    <section id="notify" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl mx-auto">
+            <div class="glass-card p-8 md:p-12 text-center reveal relative overflow-hidden group">
+                <!-- Decorative background glow inside card -->
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-accent/30 rounded-full blur-3xl group-hover:bg-accent/50 transition-all duration-700"></div>
+                <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-purple/30 rounded-full blur-3xl group-hover:bg-purple/50 transition-all duration-700"></div>
+                
+                <i data-lucide="mail-plus" class="w-16 h-16 text-white mx-auto mb-6"></i>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get <span class="text-gradient">Notified</span></h2>
+                <p class="text-gray-300 mb-8 max-w-lg mx-auto">
+                    Don't want to miss the launch? Enter your email address below and we'll send you an exclusive notification the moment the website goes live.
+                </p>
+
+                <form id="notify-form" class="relative max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-1">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i data-lucide="mail" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <input 
+                            type="email" 
+                            id="email-input" 
+                            class="w-full bg-black/40 border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300" 
+                            placeholder="Enter your email address..."
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn-primary py-3 px-6 rounded-xl font-semibold flex-shrink-0 flex items-center justify-center gap-2">
+                        <span>Subscribe</span>
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+                <p id="form-message" class="text-sm mt-4 hidden"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== -->
+    <!-- SECTION 7 — GITHUB SECTION           -->
+    <!-- ==================================== -->
+    <section id="github" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-black/40 border-y border-white/5 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Explore the <span class="text-gradient">Source Code</span></h2>
+                    <p class="text-gray-300 text-lg mb-6">
+                        While the frontend is getting its final polish, the entire backend architecture, API documentation, and database schemas are open source and available for review.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i>
+                            Complete README & Setup Guide
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i>
+                            Open Issues & Contribution Guidelines
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-200">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i>
+                            Postman Collections & Swagger Docs
+                        </li>
+                    </ul>
+                    <a href="https://github.com/prateekpokhrel/DeliverAI-Guard" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                        Open Repository
+                        <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="lg:w-1/2 w-full reveal delay-200 tilt-wrapper">
+                    <div class="tilt-element glass-card p-1 p-px bg-gradient-to-br from-gray-700 via-gray-900 to-black rounded-2xl shadow-2xl">
+                        <div class="bg-[#0d1117] rounded-2xl p-6 border border-gray-800">
+                            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://github.fluidicon.com/" alt="GitHub" class="w-8 h-8 rounded bg-white p-1" onerror="this.style.display='none'">
+                                    <i data-lucide="github" class="w-8 h-8 text-white" id="gh-fallback"></i>
+                                    <div>
+                                        <h4 class="font-bold text-white text-lg leading-tight">Project-Core-API</h4>
+                                        <p class="text-gray-500 text-sm">pratikpokhrel</p>
+                                    </div>
+                                </div>
+                                <span class="bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded-full border border-gray-700">Public</span>
+                            </div>
+                            
+                            <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                                Enterprise-level SaaS backend architecture featuring Spring Boot, FastAPI microservices, PostgreSQL, and comprehensive JWT security implementations.
+                            </p>
+
+                            <div class="grid grid-cols-3 gap-4 mb-6">
+                                <div class="text-center p-3 rounded-lg bg-gray-900 border border-gray-800">
+                                    <i data-lucide="star" class="w-4 h-4 text-yellow-500 mx-auto mb-1"></i>
+                                    <span class="block text-white font-bold">128</span>
+                                    <span class="text-xs text-gray-500">Stars</span>
+                                </div>
+                                <div class="text-center p-3 rounded-lg bg-gray-900 border border-gray-800">
+                                    <i data-lucide="git-fork" class="w-4 h-4 text-gray-400 mx-auto mb-1"></i>
+                                    <span class="block text-white font-bold">34</span>
+                                    <span class="text-xs text-gray-500">Forks</span>
+                                </div>
+                                <div class="text-center p-3 rounded-lg bg-gray-900 border border-gray-800">
+                                    <i data-lucide="circle-dot" class="w-4 h-4 text-green-500 mx-auto mb-1"></i>
+                                    <span class="block text-white font-bold">12</span>
+                                    <span class="text-xs text-gray-500">Issues</span>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-2">
+                                <span class="w-3 h-3 rounded-full bg-orange-500 mt-1"></span>
+                                <span class="text-gray-400 text-sm">Java (65%)</span>
+                                <span class="w-3 h-3 rounded-full bg-blue-500 mt-1 ml-3"></span>
+                                <span class="text-gray-400 text-sm">Python (35%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== -->
+    <!-- SECTION 8 — FAQ                      -->
+    <!-- ==================================== -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Frequently Asked <span class="text-gradient">Questions</span></h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="glass-card rounded-xl overflow-hidden reveal">
+                    <button class="accordion-header w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none group">
+                        <span class="font-semibold text-lg text-gray-200 group-hover:text-white transition-colors">When will the website officially launch?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-5 text-gray-400">
+                            The target launch date is set for Q4 2026. The backend infrastructure is already complete, and we are currently finalizing the frontend React components and rigorous integration testing to ensure a flawless user experience.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-card rounded-xl overflow-hidden reveal delay-100">
+                    <button class="accordion-header w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none group">
+                        <span class="font-semibold text-lg text-gray-200 group-hover:text-white transition-colors">Can I use the project for my own work?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-5 text-gray-400">
+                            Yes! The core repository is open-sourced under the MIT License. You are free to fork it, study the architecture, and use pieces of it for your personal or commercial projects. Attribution is appreciated but not required.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-card rounded-xl overflow-hidden reveal delay-200">
+                    <button class="accordion-header w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none group">
+                        <span class="font-semibold text-lg text-gray-200 group-hover:text-white transition-colors">Where can I find the source code?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-5 text-gray-400">
+                            The complete source code is available on my GitHub profile. You can click the "Visit Repository" button in the sections above or navigate to GitHub and search for "pratikpokhrel".
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-card rounded-xl overflow-hidden reveal delay-300">
+                    <button class="accordion-header w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none group">
+                        <span class="font-semibold text-lg text-gray-200 group-hover:text-white transition-colors">How can I contact you?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 accordion-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-5 text-gray-400">
+                            You can reach out to me via Email or connect with me on LinkedIn. Please check the contact section below for direct links to all my professional profiles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== -->
+    <!-- SECTION 9 — CONTACT                  -->
+    <!-- ==================================== -->
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 reveal">Let's <span class="text-gradient">Connect</span></h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Email -->
+                <a href="mailto:hello@example.com" class="glass-card p-6 flex flex-col items-center gap-4 reveal group hover:border-accent/50 transition-all">
+                    <div class="w-14 h-14 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                        <i data-lucide="mail" class="w-6 h-6 text-gray-400 group-hover:text-accent transition-colors"></i>
+                    </div>
+                    <span class="font-semibold text-gray-300 group-hover:text-white">Email</span>
+                </a>
+                
+                <!-- LinkedIn -->
+                <a href="#" class="glass-card p-6 flex flex-col items-center gap-4 reveal delay-100 group hover:border-blue-400/50 transition-all">
+                    <div class="w-14 h-14 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors"></i>
+                    </div>
+                    <span class="font-semibold text-gray-300 group-hover:text-white">LinkedIn</span>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/pratikpokhrel" class="glass-card p-6 flex flex-col items-center gap-4 reveal delay-200 group hover:border-white/50 transition-all">
+                    <div class="w-14 h-14 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                        <i data-lucide="github" class="w-6 h-6 text-gray-400 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <span class="font-semibold text-gray-300 group-hover:text-white">GitHub</span>
+                </a>
+
+                <!-- Portfolio -->
+                <a href="#" class="glass-card p-6 flex flex-col items-center gap-4 reveal delay-300 group hover:border-purple/50 transition-all">
+                    <div class="w-14 h-14 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-purple/20 transition-colors">
+                        <i data-lucide="globe" class="w-6 h-6 text-gray-400 group-hover:text-purple transition-colors"></i>
+                    </div>
+                    <span class="font-semibold text-gray-300 group-hover:text-white">Portfolio</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================== -->
+    <!-- SECTION 10 — FOOTER                  -->
+    <!-- ==================================== -->
+    <footer class="border-t border-white/10 bg-[#030712]/80 backdrop-blur-md relative z-10">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <div class="w-6 h-6 rounded bg-gradient-to-tr from-accent to-purple flex items-center justify-center">
+                    <i data-lucide="code-2" class="w-3 h-3 text-white"></i>
+                </div>
+                <span class="font-bold text-white">Pratik Pokhrel</span>
+            </div>
+            
+            <p class="text-gray-400 text-sm flex items-center gap-1.5">
+                Made with <i data-lucide="heart" class="w-4 h-4 text-red-500 fill-red-500 animate-pulse"></i> by Pratik Pokhrel © <span id="year"></span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3"></div>
+
+    <!-- ==================================== -->
+    <!-- SCRIPTS                              -->
+    <!-- ==================================== -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 1. Mouse Follower Glow Effect
+        const mouseGlow = document.getElementById('mouse-glow');
+        let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', (e) => {
+                requestAnimationFrame(() => {
+                    mouseGlow.style.left = e.clientX + 'px';
+                    mouseGlow.style.top = e.clientY + 'px';
+                });
+            });
+        } else {
+            mouseGlow.style.display = 'none'; // Hide on mobile for performance
+        }
+
+        // 2. Navbar Scroll Effect & Mobile Menu
+        const navbar = document.getElementById('navbar');
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-[#030712]/70', 'backdrop-blur-lg', 'border-white/10', 'shadow-lg');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-[#030712]/70', 'backdrop-blur-lg', 'border-white/10', 'shadow-lg');
+                navbar.classList.add('border-transparent');
+            }
+        });
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // 3. Floating Particles Generation
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random properties
+            const size = Math.random() * 4 + 1; // 1px to 5px
+            const left = Math.random() * 100; // 0% to 100%
+            const duration = Math.random() * 10 + 10; // 10s to 20s
+            const delay = Math.random() * 10; // 0s to 10s
+
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${left}vw`;
+            particle.style.bottom = `-10px`;
+            particle.style.animation = `float-up ${duration}s linear ${delay}s infinite`;
+
+            particlesContainer.appendChild(particle);
+        }
+
+        // 4. Typing Effect for Hero
+        const texts = ["Building Microservices...", "Designing UI...", "Writing Tests...", "Deploying via Docker..."];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typedSpan = document.getElementById("typed-text");
+        let isDeleting = false;
+
+        function type() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typedSpan.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedSpan.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500; // Pause before next word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+        
+        setTimeout(type, 1000); // Start typing
+
+        // 5. Scroll Reveal & Progress Bar Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const progressBar = document.getElementById('progress-bar');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Animate progress bar if it's within the intersected element
+                    if (entry.target.contains(progressBar) || entry.target === progressBar.closest('.reveal')) {
+                        setTimeout(() => {
+                            progressBar.style.width = progressBar.getAttribute('data-width');
+                        }, 500); // slight delay after card reveal
+                    }
+
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 6. 3D Card Tilt Effect (Premium touch)
+        const tiltElements = document.querySelectorAll('.tilt-wrapper');
+        
+        if (!isTouchDevice) {
+            tiltElements.forEach(wrapper => {
+                const element = wrapper.querySelector('.tilt-element');
+                
+                wrapper.addEventListener('mousemove', (e) => {
+                    const rect = wrapper.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // x position within the element.
+                    const y = e.clientY - rect.top;  // y position within the element.
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Calculate rotation (max 10 degrees)
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    
+                    element.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+                
+                wrapper.addEventListener('mouseleave', () => {
+                    element.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                    // Add smooth transition back
+                    element.style.transition = 'transform 0.5s ease';
+                    setTimeout(() => {
+                        element.style.transition = 'transform 0.1s ease'; // reset for mousemove
+                    }, 500);
+                });
+            });
+        }
+
+        // 7. FAQ Accordion Logic
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isActive = header.classList.contains('active');
+                
+                // Close all others
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    item.style.maxHeight = null;
+                    item.previousElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current
+                if (!isActive) {
+                    header.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // 8. Form Validation & Local Storage logic
+        const form = document.getElementById('notify-form');
+        const emailInput = document.getElementById('email-input');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Setup LocalStorage Array
+        if (!localStorage.getItem('subscribedEmails')) {
+            localStorage.setItem('subscribedEmails', JSON.stringify([]));
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast glass px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 border-l-4 ${type === 'success' ? 'border-l-green-500' : 'border-l-red-500'}`;
+            
+            const icon = type === 'success' 
+                ? '<i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>'
+                : '<i data-lucide="alert-circle" class="w-5 h-5 text-red-500"></i>';
+
+            toast.innerHTML = `
+                ${icon}
+                <span class="text-white font-medium">${message}</span>
+            `;
+            
+            toastContainer.appendChild(toast);
+            lucide.createIcons(); // Re-init icons for new toast
+
+            // Animate in
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            // Remove after 4 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim().toLowerCase();
+            
+            // Basic regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(email)) {
+                form.classList.add('shake');
+                showToast('Please enter a valid email address.', 'error');
+                setTimeout(() => form.classList.remove('shake'), 600);
+                return;
+            }
+
+            const emails = JSON.parse(localStorage.getItem('subscribedEmails'));
+            
+            if (emails.includes(email)) {
+                form.classList.add('shake');
+                showToast('This email is already on the notification list!', 'error');
+                setTimeout(() => form.classList.remove('shake'), 600);
+            } else {
+                emails.push(email);
+                localStorage.setItem('subscribedEmails', JSON.stringify(emails));
+                
+                showToast('Success! You will be notified on launch.');
+                emailInput.value = ''; // Reset
+                
+                // Success button animation
+                const btn = form.querySelector('button');
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i data-lucide="check" class="w-5 h-5"></i> Subscribed';
+                btn.classList.replace('bg-accent', 'bg-green-600');
+                lucide.createIcons();
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.classList.replace('bg-green-600', 'bg-accent');
+                    lucide.createIcons();
+                }, 3000);
+            }
+        });
+
+    </script>
+</body>
+</html>
